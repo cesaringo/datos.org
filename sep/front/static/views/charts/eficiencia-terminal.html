@@ -1,0 +1,62 @@
+<div ng-view name="chart-eficiencia-terminal">
+	<p>Gráfica de eficiencia Terminal</p>
+
+	<form>
+		<p>Seleccion una entidad federativa</p>
+		<md-autocomplete
+	          md-search-text-change="et.searchTextChange(et.searchText)"
+	          md-search-text="et.searchText"
+	          md-selected-item-change="et.ChangeEstado(item)"
+	          md-items="item in et.querySearch(et.searchText)"
+	          md-min-length="0"
+	          placeholder="Seleccion una entidad federativa">
+	        <md-item-template>
+	          <span md-highlight-text="et.searchText" md-highlight-flags="^i">{{item}}</span>
+	        </md-item-template>
+	        <md-not-found>
+	          No matches found for "{{et.searchText}}".
+	        </md-not-found>
+	      </md-autocomplete>
+
+	      <p>Seelcciona un ciclo escolar</p>
+      	<md-autocomplete
+	          md-search-text-change="et.searchTextChange(et.searchText)"
+	          md-selected-item-change="et.ChangeCicloEscolar(item)"
+	          md-items="item in et.ciclos_escolares"
+	          md-min-length="0"
+	          placeholder="Seleccion un ciclo escolar">
+	        <md-item-template>
+	          <span md-highlight-text="et.searchText" md-highlight-flags="^i">{{item}}</span>
+	        </md-item-template>
+	        <md-not-found>
+	          No matches found for "{{et.searchText}}".
+	        </md-not-found>
+	      </md-autocomplete>
+	      
+
+
+      	<p>Selecciona un nivel educativo</p>
+		<md-autocomplete
+	          md-selected-item-change="et.ChangeNivel(item)"
+	          md-items="item in et.niveles"
+	          md-min-length="0"
+	          placeholder="Seleccion un nivel educativo">
+	        <md-item-template>
+	          <span md-highlight-text="et.searchText" md-highlight-flags="^i">{{item}}</span>
+	        </md-item-template>
+	        <md-not-found>
+	          No matches found for "{{et.searchText}}".
+	        </md-not-found>
+	      </md-autocomplete>
+	      <p><button class="md-raised md-primary md-button md-default-theme" 
+	      ng-click="LoadChart()" type="">Consultar Grafica</button></p>
+	</form>
+	<div>
+		<h3 ng-if="loading"><md-progress-circular md-mode="indeterminate"></md-progress-circular></h3>
+		<h3 ng-if="!loading">Done</h3>
+		<canvas id="bar" class="chart chart-bar"
+		chart-data="porcentaje_de_terminacion" chart-labels="current_entidades_federativas" chart-series="current_ciclos_escolares">
+		</canvas
+	</div>
+
+</div>

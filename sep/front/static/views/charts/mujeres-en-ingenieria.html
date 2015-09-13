@@ -1,0 +1,42 @@
+<div ng-view name="chart-eficiencia-terminal">
+	<p>Mujeres en Ingeniería</p>
+	
+	<form >
+		<p>Selecciona una entida federativa</p>
+		<md-autocomplete
+	          md-selected-item-change="ChangeEntidad(item)"
+	          md-items="item in entidades"
+	          md-min-length="0"
+	          placeholder="Seleccion una entidad fedarativa">
+	        <md-item-template>
+	          <span md-highlight-text="mei.searchText" md-highlight-flags="^i">{{item}}</span>
+	        </md-item-template>
+	        <md-not-found>
+	          No matches found for "{{mei.searchText}}".
+	        </md-not-found>
+      	</md-autocomplete>
+
+      	<p>Selecciona una ciclo escolar</p>
+		<md-autocomplete
+	          md-selected-item-change="ChangeCiclo(item)"
+	          md-items="item in ciclos"
+	          md-min-length="0"
+	          placeholder="Seleccion un ciclo escolar">
+	        <md-item-template>
+	          <span md-highlight-text="mei.searchText" md-highlight-flags="^i">{{item}}</span>
+	        </md-item-template>
+	        <md-not-found>
+	          No matches found for "{{mei.searchText}}".
+	        </md-not-found>
+      	</md-autocomplete>
+		<p><button class="md-raised md-primary md-button md-default-theme" 
+	      ng-click="LoadChart(query_entidades, query_ciclos)" type="">Consultar Grafica</button></p>
+	</form>
+	<h3 ng-if="loading"><md-progress-circular md-mode="indeterminate"></md-progress-circular></h3>
+	<h3 ng-if="!loading">Done</h3>
+	<div class="">
+		<canvas ng-if="data" id="bar" class="chart chart-bar"
+			chart-data="data" chart-labels="current_entidades" chart-series="current_ciclos">
+		</canvas
+	</div>
+</div>

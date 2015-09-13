@@ -1,0 +1,62 @@
+<div ng-view>
+	<form>
+		<h3>Seleccion los filtros</h3>
+		<fieldset class="standard">
+		<md-checkbox ng-model="params.publica"  aria-label="Pública">
+			Públicas: {{publica}}
+		</md-checkbox>
+		<md-checkbox ng-model="params.privada"  aria-label="Privada">
+			Privada: {{privada}}
+		</md-checkbox>
+		<md-divider/>
+
+		
+		<md-autocomplete 
+		md-search-text-change="searchTextChange(et.searchText)"
+          md-search-text="searchText"
+		md-items="item in getProgramasEducativos(searchText)" 
+		md-min-length="0"
+		md-selected-item-change="CambiarPrograma(item)"
+		placeholder = "Por programa educativo"
+		>
+		  <span md-highlight-text="searchText">{{item}}</span>
+		</md-autocomplete>
+		<md-divider/><br>
+		<md-autocomplete
+	          md-selected-item-change="ChangeEntidad(item)"
+	          md-items="item in entidades"
+	          md-min-length="0"
+	          placeholder="Por entidad fedarativa">
+	        <md-item-template>
+	          <span md-highlight-text="bu.searchText" md-highlight-flags="^i">{{item}}</span>
+	        </md-item-template>
+	        <md-not-found>
+	          No matches found for "{{bu.searchText}}".
+	        </md-not-found>
+      	</md-autocomplete>
+
+		</fieldset>
+		<p><button class="md-raised md-primary md-button md-default-theme" 
+	      ng-click="BuscarUniversidades(params)" type="">Buscar</button></p>
+	</form>
+	<div>
+		<h3 ng-if="buscando"><md-progress-circular md-mode="indeterminate"></md-progress-circular></h3>
+		<h3 ng-if="!buscando">Done</h3>
+		<md-content>
+    			<md-list>
+	    			<md-subheader class="md-no-sticky">{{params}}</md-subheader>
+	    			<md-list-item class="md-3-line" ng-repeat="item in universidades">
+					<i class="material-icons md-2-line">store_mall_directory</i>
+					<div class="md-list-item-text" layout="column">
+						<h3>{{ item | capitalize }}</h3>
+						<md-content>
+							<p><a ng-click="openInfo($event, item)">more</a></p>
+						</md-content>
+					</div>
+					<md-divider ></md-divider>
+				</md-list-item>
+				
+    			</md-list>
+    		</md-content>
+	</div>
+</div>

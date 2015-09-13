@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+    {% load staticfiles %}
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no" />
+    <link rel="stylesheet" href="{% static 'bower_components/angular-material/angular-material.css' %}">
+    <link rel="stylesheet" href="{% static 'bower_components/angular-chart.js/dist/angular-chart.css' %}">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet">
+</head>
+    <body ng-app="ChartSEP" ng-controller="AppCtrl">
+    <md-toolbar layout="row">
+      <div class="md-toolbar-tools">
+        <md-button ng-click="toggleSidenav('left')" hide-gt-sm class="md-icon-button">
+          <md-icon aria-label="Menu" md-svg-icon="https://s3-us-west-2.amazonaws.com/s.cdpn.io/68133/menu.svg"></md-icon>
+        </md-button>
+        <h1>ChartSEP</h1>
+      </div>
+    </md-toolbar>
+
+    <div ui-view>
+    </div>
+    
+    <script src="{% static 'bower_components/angular/angular.js' %}"></script>
+    <script src="{% static 'bower_components/angular-ui-router/release/angular-ui-router.min.js' %}"></script>
+    <script src="{% static 'bower_components/angular-aria/angular-aria.js' %}"></script>
+    <script src="{% static 'bower_components/angular-animate/angular-animate.js' %}"></script>
+    <script src="{% static 'bower_components/angular-material/angular-material.js' %}"></script>
+    <script src="{% static 'bower_components/Chart.js/Chart.min.js' %}"></script>
+    <script src="{% static 'bower_components/angular-chart.js/dist/angular-chart.js' %}"></script>
+    <script src="{% static 'app.js' %}"></script>
+    <script>
+       
+
+    </script>
+
+</body>
+</html>
